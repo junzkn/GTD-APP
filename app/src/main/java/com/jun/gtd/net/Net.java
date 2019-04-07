@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.jun.gtd.bean.ResponseDataBean;
+import com.jun.gtd.bean.TodoBean;
 import com.jun.gtd.bean.UserBean;
 import com.jun.gtd.utils.Common;
 import com.jun.gtd.utils.PreUtil;
@@ -21,6 +22,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -39,7 +41,6 @@ public class Net {
             String cookie = PreUtil.getString(Common.Net.SAVE_USER_LOGIN_KEY);
             if (!TextUtils.isEmpty(cookie)) {
                 builder.addHeader(Common.Net.COOKIE_NAME, cookie);
-
             }
             return chain.proceed(builder.build());
         }
@@ -50,7 +51,10 @@ public class Net {
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
             Response response = chain.proceed(request);
-            PreUtil.set(Common.Net.SAVE_USER_LOGIN_KEY, encodeCookie(response.headers(Common.Net.SET_COOKIE_KEY)));
+            final String requestUrl = request.url().toString();
+            if(requestUrl.contains("user")){
+                PreUtil.set(Common.Net.SAVE_USER_LOGIN_KEY, encodeCookie(response.headers(Common.Net.SET_COOKIE_KEY)));
+            }
             return response;
         }
     };
@@ -97,8 +101,26 @@ public class Net {
         api.postRegister(username, password,repassword).enqueue(callback);
     }
 
-    public void getIsLogin(Callback<ResponseDataBean> callback){
-        api.getIsLogin().enqueue(callback);
+
+
+    public void postAddTodo ( TodoBean todo ,Callback<ResponseDataBean<TodoBean>> callback){
+        api.postAddTodo(todo).enqueue(callback);
+    }
+
+    public void getGetTodo (int symbol , int flag , Callback<ResponseDataBean<List<TodoBean>>> callback){
+        api.getGetTodo(symbol,flag).enqueue(callback);
+    }
+
+    public void postDeleteTodo(int id,Callback<ResponseDataBean> callback){
+        api.postDeleteTodo(id).enqueue(callback);
+    }
+
+    public void postUpdateTodo(TodoBean todo , Callback<ResponseDataBean> callback){
+        api.postUpdateTodo(todo).enqueue(callback);
+    }
+
+    public void postUpdateTodoStatus(int id , int status,Callback<ResponseDataBean> callback){
+        api.postUpdateTodoStatus(id,status).enqueue(callback);
     }
 
 
@@ -115,6 +137,7 @@ public class Net {
             sb.delete(sb.length() - 1, sb.length());
         return sb.toString().trim();
     }
+
 
 
 

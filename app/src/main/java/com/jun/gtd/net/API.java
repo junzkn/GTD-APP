@@ -1,14 +1,19 @@
 package com.jun.gtd.net;
 
 import com.jun.gtd.bean.ResponseDataBean;
+import com.jun.gtd.bean.TodoBean;
 import com.jun.gtd.bean.UserBean;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface API {
 
@@ -27,8 +32,29 @@ public interface API {
                                                   @Field(value="repassword") String repassword);
 
 
-    @GET("user/islogin")
-    Call<ResponseDataBean> getIsLogin();
+    @Headers({"Content-Type: application/json","Accept: application/json"})
+    @POST("todo/addTodo")
+    Call<ResponseDataBean<TodoBean>>postAddTodo(@Body TodoBean todoBean) ;
+
+
+    @GET("todo/getTodo")
+    Call<ResponseDataBean<List<TodoBean>>>getGetTodo(@Query("symbol") int symbol, @Query("flag") int flag) ;
+
+    @POST("todo/deleteTodo")
+    @FormUrlEncoded
+    Call<ResponseDataBean> postDeleteTodo(@Field("id")int id);
+
+    @Headers({"Content-Type: application/json","Accept: application/json"})
+    @POST("todo/updateTodo")
+    Call<ResponseDataBean> postUpdateTodo(@Body TodoBean todoBean) ;
+
+
+    @POST("todo/updateTodoStatus")
+    @FormUrlEncoded
+    Call<ResponseDataBean> postUpdateTodoStatus(@Field("id")int id,@Field("status")int status) ;
+
+
+
 
 
 

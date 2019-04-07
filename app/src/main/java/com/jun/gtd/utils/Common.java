@@ -11,4 +11,10 @@ public interface Common {
         String SET_COOKIE_KEY = "set-cookie";
     }
 
+    interface Todo{
+        int GET_BY_TYPE = 1001 ;
+        int GET_BY_STATUS = 1002;
+        int GET_ALL = 1003 ;
+    }
+
 }
