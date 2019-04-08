@@ -1,13 +1,12 @@
 package com.jun.gtd.net;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.jun.gtd.bean.ResponseDataBean;
 import com.jun.gtd.bean.TodoBean;
 import com.jun.gtd.bean.UserBean;
 import com.jun.gtd.utils.Common;
-import com.jun.gtd.utils.PreUtil;
+import com.jun.gtd.utils.PreUtils;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -16,17 +15,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class Net {
 
@@ -38,7 +34,7 @@ public class Net {
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
             Request.Builder builder = request.newBuilder();
-            String cookie = PreUtil.getString(Common.Net.SAVE_USER_LOGIN_KEY);
+            String cookie = PreUtils.getString(Common.Net.SAVE_USER_LOGIN_KEY);
             if (!TextUtils.isEmpty(cookie)) {
                 builder.addHeader(Common.Net.COOKIE_NAME, cookie);
             }
@@ -53,7 +49,7 @@ public class Net {
             Response response = chain.proceed(request);
             final String requestUrl = request.url().toString();
             if(requestUrl.contains("user")){
-                PreUtil.set(Common.Net.SAVE_USER_LOGIN_KEY, encodeCookie(response.headers(Common.Net.SET_COOKIE_KEY)));
+                PreUtils.set(Common.Net.SAVE_USER_LOGIN_KEY, encodeCookie(response.headers(Common.Net.SET_COOKIE_KEY)));
             }
             return response;
         }

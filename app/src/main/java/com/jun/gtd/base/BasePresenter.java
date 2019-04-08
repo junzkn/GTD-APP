@@ -1,6 +1,6 @@
 package com.jun.gtd.base;
 
-public abstract class BasePresenter<T,E> {
+public abstract class BasePresenter<T,E> implements PresenterLifecycle{
     protected T mView ;
     protected E mModel ;
 
@@ -19,7 +19,8 @@ public abstract class BasePresenter<T,E> {
         this.mModel = model ;
     }
 
-
-
-
+    @Override
+    public boolean isEnd() {
+        return mView==null;
+    }
 }

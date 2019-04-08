@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GTD</string>
+    <string name="please_check_network">请检查网路</string>
+    <string name="link_out_time">连接超时</string>
 </resources>
