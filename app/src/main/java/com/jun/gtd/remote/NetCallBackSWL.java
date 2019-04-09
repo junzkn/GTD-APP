@@ -13,6 +13,7 @@ public abstract class NetCallBackSWL<T> implements NetCallBack<T> {
 
     private WeakReference<SwipeRefreshLayout> refreshLayout;
 
+    public NetCallBackSWL() {}
 
     public NetCallBackSWL(SwipeRefreshLayout refreshLayout) {
         this.refreshLayout = new WeakReference<>(refreshLayout);
@@ -36,5 +37,10 @@ public abstract class NetCallBackSWL<T> implements NetCallBack<T> {
                 return;
             }
         }
+    }
+
+    @Override
+    public void onSuccess(T date) {
+
     }
 }
