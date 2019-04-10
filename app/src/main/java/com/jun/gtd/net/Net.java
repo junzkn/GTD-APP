@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import com.jun.gtd.bean.ResponseDataBean;
 import com.jun.gtd.bean.TodoBean;
 import com.jun.gtd.bean.UserBean;
-import com.jun.gtd.utils.Common;
 import com.jun.gtd.utils.PreUtils;
 
 import java.io.IOException;
@@ -26,6 +25,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Net {
 
+    public static final String BASE_URL = "http://jun:8080" ;
+    public static final int TIME_OUT_CONNECT = 200 ;
+    public static final int TIME_OUT_READ = 200 ;
+    public static final String COOKIE_NAME = "Cookie";
+    public static final String SAVE_USER_LOGIN_KEY = "user/login";
+    public static final String SET_COOKIE_KEY = "set-cookie";
+
     private static Net mInstance;
     private API api;
 
@@ -34,9 +40,9 @@ public class Net {
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
             Request.Builder builder = request.newBuilder();
-            String cookie = PreUtils.getString(Common.Net.SAVE_USER_LOGIN_KEY);
+            String cookie = PreUtils.getString(Net.SAVE_USER_LOGIN_KEY);
             if (!TextUtils.isEmpty(cookie)) {
-                builder.addHeader(Common.Net.COOKIE_NAME, cookie);
+                builder.addHeader(Net.COOKIE_NAME, cookie);
             }
             return chain.proceed(builder.build());
         }
@@ -49,7 +55,7 @@ public class Net {
             Response response = chain.proceed(request);
             final String requestUrl = request.url().toString();
             if(requestUrl.contains("user")){
-                PreUtils.set(Common.Net.SAVE_USER_LOGIN_KEY, encodeCookie(response.headers(Common.Net.SET_COOKIE_KEY)));
+                PreUtils.set(Net.SAVE_USER_LOGIN_KEY, encodeCookie(response.headers(Net.SET_COOKIE_KEY)));
             }
             return response;
         }
@@ -61,12 +67,12 @@ public class Net {
                         .setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor(requestInterceptor)
                 .addInterceptor(responseInterceptor)
-                .connectTimeout(Common.Net.TIME_OUT_CONNECT, TimeUnit.SECONDS)
-                .readTimeout(Common.Net.TIME_OUT_READ, TimeUnit.SECONDS)
+                .connectTimeout(Net.TIME_OUT_CONNECT, TimeUnit.SECONDS)
+                .readTimeout(Net.TIME_OUT_READ, TimeUnit.SECONDS)
                 .build();
 
         api = new Retrofit.Builder()
-                .baseUrl(Common.Net.BASE_URL)
+                .baseUrl(Net.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient)
                 .build()

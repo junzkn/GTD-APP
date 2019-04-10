@@ -15,7 +15,7 @@ import com.jun.gtd.utils.ToastUtils;
 public class LoginModel extends BaseModel implements LoginContract.Model {
     @Override
     public void executeLogin(String username, String password, PresenterLifecycle presenterLife, NetCallBack<ResponseDataBean<UserBean>> callback) {
-        if(checkInput(username,password)){
+        if(checkLoginInputError(username,password)){
             callback.onFinished();
             return ;
         }
@@ -26,20 +26,31 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
 
     @Override
     public void executeRegister(String username, String password, String repassword, PresenterLifecycle presenterLife, NetCallBack<ResponseDataBean<UserBean>> callback) {
-        if(checkInput(username,password)){
+        if(checkRegisterInputError(username,password)){
             callback.onFinished();
             return ;
         }
         Net.getInstance().postRegister(username,password,repassword,NetCallBackHandler.getCallBack(presenterLife,callback));
     }
 
-    private boolean checkInput(String username, String password) {
+    private boolean checkLoginInputError(String username, String password) {
         if (InputUtils.isEmpty(username)) {
             ToastUtils.error(App.getInstance().getString(R.string.please_input_account));
-            return false;
+            return true;
         } else if (InputUtils.isEmpty(password)) {
             ToastUtils.error(App.getInstance().getString(R.string.please_input_password));
-            return false;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkRegisterInputError(String username, String password) {
+        if (!InputUtils.isMatchRegEx(username,"^[0-9a-zA-Z]{1,}$")) {
+            ToastUtils.error(App.getInstance().getString(R.string.input_account_error));
+            return true;
+        } else if (!InputUtils.isMatchRegEx(password,"^[0-9a-zA-Z]{1,}$")) {
+            ToastUtils.error(App.getInstance().getString(R.string.input_password_error));
+            return true;
         }
         return false;
     }

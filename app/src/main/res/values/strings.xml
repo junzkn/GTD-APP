@@ -9,4 +9,6 @@
     <string name="register">注册</string>
     <string name="login">登录</string>
     <string name="success_login">登录成功</string>
+    <string name="input_account_error">用户名只能是英文数字组合</string>
+    <string name="input_password_error">密码只能是英文数字组合</string>
 </resources>

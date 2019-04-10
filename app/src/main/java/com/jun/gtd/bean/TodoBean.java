@@ -5,6 +5,10 @@ package com.jun.gtd.bean;
 public class TodoBean {
 
 
+    public static final int GET_BY_TYPE = 1001 ;
+    public static final int GET_BY_STATUS = 1002;
+    public static final int GET_ALL = 1003 ;
+
     private int id ;
     private String title ;
     private String content ;

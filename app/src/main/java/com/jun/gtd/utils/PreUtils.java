@@ -1,8 +1,6 @@
 package com.jun.gtd.utils;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,7 +8,6 @@ import android.text.TextUtils;
 
 import com.jun.gtd.base.App;
 
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 

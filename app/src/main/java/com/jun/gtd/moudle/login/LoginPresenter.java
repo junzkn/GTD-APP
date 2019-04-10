@@ -1,5 +1,6 @@
 package com.jun.gtd.moudle.login;
 
+import com.jun.gtd.base.App;
 import com.jun.gtd.base.BasePresenter;
 import com.jun.gtd.bean.ResponseDataBean;
 import com.jun.gtd.bean.UserBean;
@@ -17,7 +18,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View,LoginContra
         mModel.executeLogin(username, password, this, new NetCallBackSWL<ResponseDataBean<UserBean>>() {
             @Override
             public void onSuccess(ResponseDataBean<UserBean> date) {
-                //TODO 存储用户信息
+                App.Login.login(date.getData());
                 mView.loginSuccess();
             }
 
@@ -35,7 +36,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View,LoginContra
         mModel.executeRegister(username, password, repassword, this, new NetCallBackSWL<ResponseDataBean<UserBean>>() {
             @Override
             public void onSuccess(ResponseDataBean<UserBean> date) {
-                //TODO 存储用户信息
+                App.Login.login(date.getData());
                 mView.loginSuccess();
             }
             @Override

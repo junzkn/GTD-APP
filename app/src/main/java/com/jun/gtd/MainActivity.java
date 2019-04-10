@@ -2,7 +2,6 @@ package com.jun.gtd;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.view.menu.MenuBuilder;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -11,9 +10,7 @@ import com.jun.gtd.bean.ResponseDataBean;
 import com.jun.gtd.bean.TodoBean;
 import com.jun.gtd.bean.UserBean;
 import com.jun.gtd.net.Net;
-import com.jun.gtd.utils.Common;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -100,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 }) ;
                 break ;
             case R.id.getTodo :
-                Net.getInstance().getGetTodo(Common.Todo.GET_ALL, 1, new Callback<ResponseDataBean<List<TodoBean>>>() {
+                Net.getInstance().getGetTodo(TodoBean.GET_ALL, 1, new Callback<ResponseDataBean<List<TodoBean>>>() {
                     @Override
                     public void onResponse(Call<ResponseDataBean<List<TodoBean>>> call, Response<ResponseDataBean<List<TodoBean>>> response) {
                         if(response.body().getErrorCode()==0) {

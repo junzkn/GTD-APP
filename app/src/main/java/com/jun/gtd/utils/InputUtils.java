@@ -7,6 +7,9 @@ import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class InputUtils {
 
     public static final String SPACE = "\u202F\u202F";
@@ -84,6 +87,18 @@ public class InputUtils {
         } else {
             return Character.toUpperCase(first) + s.substring(1);
         }
+    }
+
+    public static boolean isMatchRegEx(String str, String regEx){
+        Pattern pattern = Pattern.compile(regEx);
+        Matcher matcher = pattern.matcher(str);
+        return matcher.matches();
+    }
+
+    public static boolean isMatchRegEx(EditText et , String regEx){
+        Pattern pattern = Pattern.compile(regEx);
+        Matcher matcher = pattern.matcher(et.getText().toString().trim());
+        return matcher.matches();
     }
 
 }
