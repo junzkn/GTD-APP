@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <FrameLayout
+                android:id="@+id/btn_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp">
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@null"
+                android:hint="@string/example_study"
+                android:lines="1"
+                android:maxLines="1"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/et_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="top|left"
+                android:hint="@string/content"
+                android:padding="12dp" />
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/btn_choose_calendar"
+                android:layout_width="@dimen/default_height"
+                android:layout_height="@dimen/default_height"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_calendar" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/btn_typeList"
+                android:layout_width="@dimen/default_height"
+                android:layout_height="@dimen/default_height"
+                android:layout_toEndOf="@id/btn_choose_calendar"
+                android:layout_toRightOf="@id/btn_choose_calendar"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_todo_type_list" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/btn_Priority"
+                android:layout_width="@dimen/default_height"
+                android:layout_height="@dimen/default_height"
+                android:layout_toEndOf="@id/btn_typeList"
+                android:layout_toRightOf="@id/btn_typeList"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_priority" />
+
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/btn_ok"
+                android:layout_width="@dimen/default_height"
+                android:layout_height="@dimen/default_height"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_send" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+
+</FrameLayout>

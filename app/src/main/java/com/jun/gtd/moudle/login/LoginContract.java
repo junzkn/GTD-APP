@@ -6,7 +6,7 @@ import com.jun.gtd.bean.ResponseDataBean;
 import com.jun.gtd.bean.UserBean;
 import com.jun.gtd.net.NetCallBack;
 
-public class LoginContract implements BaseContract {
+public class LoginContract {
 
     interface View extends BaseContract.View {
         void displayProgress();

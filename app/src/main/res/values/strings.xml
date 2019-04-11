@@ -11,4 +11,8 @@
     <string name="success_login">登录成功</string>
     <string name="input_account_error">用户名只能是英文数字组合</string>
     <string name="input_password_error">密码只能是英文数字组合</string>
+    <string name="success_add">添加成功</string>
+    <string name="success_edit">修改成功</string>
+    <string name="example_study">例如：学习</string>
+    <string name="content">内容</string>
 </resources>

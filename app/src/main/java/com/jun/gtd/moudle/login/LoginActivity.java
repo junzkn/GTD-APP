@@ -18,7 +18,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     private Button mBtnSwitch, mBtnConfirm;
     private EditText mEtAccount,  mEtPassword;
     private View mLayoutContainer;
-    private ProgressBar mProgressBar;
+    private ProgressBar mPbLoading;
 
     public static final int LOGIN_ACTIVITY_REQUEST_CODE = 1001;
     public static final int LOGIN_ACTIVITY_RESPONSE_CODE = 1002;
@@ -38,7 +38,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     protected void init() {
         mBtnSwitch = findViewById(R.id.btn_switch);
         mBtnConfirm = findViewById(R.id.btn_confirm);
-        mProgressBar = findViewById(R.id.pb_loading);
+        mPbLoading = findViewById(R.id.pb_loading);
         mEtAccount = findViewById(R.id.et_account);
         mEtPassword = findViewById(R.id.et_password);
         mLayoutContainer = findViewById(R.id.ll_container);
@@ -89,12 +89,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     public void displayProgress() {
         mLayoutContainer.setVisibility(View.INVISIBLE);
-        mProgressBar.setVisibility(View.VISIBLE);
+        mPbLoading.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void dismissProgress() {
-        mProgressBar.setVisibility(View.GONE);
+        mPbLoading.setVisibility(View.GONE);
         mLayoutContainer.setVisibility(View.VISIBLE);
     }
 

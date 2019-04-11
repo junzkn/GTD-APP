@@ -117,11 +117,11 @@ public class Net {
         api.postDeleteTodo(id).enqueue(callback);
     }
 
-    public void postUpdateTodo(TodoBean todo , Callback<ResponseDataBean> callback){
+    public void postUpdateTodo(TodoBean todo , Callback<ResponseDataBean<TodoBean>> callback){
         api.postUpdateTodo(todo).enqueue(callback);
     }
 
-    public void postUpdateTodoStatus(int id , int status,Callback<ResponseDataBean> callback){
+    public void postUpdateTodoStatus(int id , int status,Callback<ResponseDataBean<TodoBean>> callback){
         api.postUpdateTodoStatus(id,status).enqueue(callback);
     }
 

@@ -46,12 +46,12 @@ public interface API {
 
     @Headers({"Content-Type: application/json","Accept: application/json"})
     @POST("todo/updateTodo")
-    Call<ResponseDataBean> postUpdateTodo(@Body TodoBean todoBean) ;
+    Call<ResponseDataBean<TodoBean>> postUpdateTodo(@Body TodoBean todoBean) ;
 
 
     @POST("todo/updateTodoStatus")
     @FormUrlEncoded
-    Call<ResponseDataBean> postUpdateTodoStatus(@Field("id")int id,@Field("status")int status) ;
+    Call<ResponseDataBean<TodoBean>> postUpdateTodoStatus(@Field("id")int id,@Field("status")int status) ;
 
 
 

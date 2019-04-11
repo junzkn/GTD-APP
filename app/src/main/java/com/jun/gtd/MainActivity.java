@@ -135,17 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 todo.setId(15);
                 todo.setTitle("我爱第四版");
                 todo.setUserid(17);
-                Net.getInstance().postUpdateTodo(todo, new Callback<ResponseDataBean>() {
-                    @Override
-                    public void onResponse(Call<ResponseDataBean> call, Response<ResponseDataBean> response) {
 
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseDataBean> call, Throwable t) {
-
-                    }
-                });
                 break ;
             case R.id.updateTodoStatus :
                 Net.getInstance().postUpdateTodoStatus(15, 3, new Callback<ResponseDataBean>() {
