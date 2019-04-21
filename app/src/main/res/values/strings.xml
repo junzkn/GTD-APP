@@ -15,4 +15,13 @@
     <string name="success_edit">修改成功</string>
     <string name="example_study">例如：学习</string>
     <string name="content">内容</string>
+    <string name="success_delete">删除成功</string>
+    <string name="doing">进行中</string>
+    <string name="undoing">已完成</string>
+    <string name="delete">删除</string>
+    <string name="height_priority">高</string>
+    <string name="middle_priority">中</string>
+    <string name="low_priority">低</string>
+    <string name="default_priority">默认</string>
+    <string name="please_input_title">请输入标题</string>
 </resources>

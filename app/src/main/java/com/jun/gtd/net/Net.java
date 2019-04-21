@@ -31,6 +31,7 @@ public class Net {
     public static final String COOKIE_NAME = "Cookie";
     public static final String SAVE_USER_LOGIN_KEY = "user/login";
     public static final String SET_COOKIE_KEY = "set-cookie";
+    public static final int NO_LOGIN = -1001;
 
     private static Net mInstance;
     private API api;

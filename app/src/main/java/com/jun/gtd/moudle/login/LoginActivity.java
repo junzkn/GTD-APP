@@ -21,7 +21,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     private ProgressBar mPbLoading;
 
     public static final int LOGIN_ACTIVITY_REQUEST_CODE = 1001;
-    public static final int LOGIN_ACTIVITY_RESPONSE_CODE = 1002;
+    public static final int LOGIN_ACTIVITY_RESULT_CODE = 1002;
 
 
     @Override
@@ -113,7 +113,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     public void loginSuccess() {
         ToastUtils.success(getString(R.string.success_login));
-        setResult(LOGIN_ACTIVITY_RESPONSE_CODE);
+        setResult(LOGIN_ACTIVITY_RESULT_CODE);
         finish();
     }
 

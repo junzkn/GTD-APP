@@ -55,6 +55,9 @@ public class SoftKeyUtils {
         }
     }
 
+
+
+
     public static void hide(Activity context, EditText editText) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm == null) return;

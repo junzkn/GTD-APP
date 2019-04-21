@@ -37,4 +37,7 @@ dependencies {
     //View
     implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.41"
 
+    implementation project(path: ':bubble')
+    implementation project(':DateTimePickerLibrary')
+
 }

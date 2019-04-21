@@ -8,9 +8,9 @@ import com.jun.gtd.bean.TodoBean;
 import com.jun.gtd.remote.NetCallBackSWL;
 import com.jun.gtd.utils.ToastUtils;
 
-public class PostPesenter extends BasePresenter<PostContract.View,PostContract.Model> implements PostContract.Presenter {
+public class PostPresenter extends BasePresenter<PostContract.View,PostContract.Model> implements PostContract.Presenter {
 
-    public PostPesenter(PostContract.Model model) {
+    public PostPresenter(PostContract.Model model) {
         super(model);
     }
 

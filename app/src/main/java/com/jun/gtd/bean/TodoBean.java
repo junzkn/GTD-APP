@@ -1,8 +1,12 @@
 package com.jun.gtd.bean;
 
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.jun.gtd.moudle.main.TodoAdapter;
 
-public class TodoBean {
+import java.io.Serializable;
+
+public class TodoBean implements MultiItemEntity, Serializable {
 
 
     public static final int GET_BY_TYPE = 1001 ;
@@ -128,5 +132,8 @@ public class TodoBean {
     }
 
 
-
+    @Override
+    public int getItemType() {
+        return TodoAdapter.TYPE_TODO;
+    }
 }

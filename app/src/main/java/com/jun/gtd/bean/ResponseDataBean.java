@@ -1,6 +1,8 @@
 package com.jun.gtd.bean;
 
-public class ResponseDataBean<T> {
+import java.io.Serializable;
+
+public class ResponseDataBean<T> implements Serializable {
     private T data ;
     private int errorCode ;
     private String errorMsg;

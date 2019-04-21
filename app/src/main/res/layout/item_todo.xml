@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <CheckBox
+        android:id="@+id/cb_check"
+        android:layout_gravity="center"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        />
+
+
+    <TextView
+        android:text="测试测试测试"
+        android:layout_gravity="center"
+        android:id="@+id/tv_text"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="#0f0f0f"
+        />
+
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_date"
+            android:visibility="visible"
+            android:layout_gravity="center_horizontal"
+            android:textSize="10sp"
+            android:text="5月20号"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/img_content"
+            android:visibility="visible"
+            android:layout_gravity="end"
+            app:srcCompat="@drawable/ic_content"
+            android:layout_width="10dp"
+            android:layout_height="10dp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

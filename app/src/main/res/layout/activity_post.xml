@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_root_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+   >
 
     <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/ll_top"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -13,7 +16,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
+            >
 
             <FrameLayout
                 android:id="@+id/btn_back"
@@ -69,27 +72,27 @@
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/btn_choose_calendar"
+                android:id="@+id/btn_calendar"
                 android:layout_width="@dimen/default_height"
                 android:layout_height="@dimen/default_height"
                 android:scaleType="center"
                 app:srcCompat="@drawable/ic_calendar" />
 
             <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/btn_typeList"
+                android:id="@+id/btn_category"
                 android:layout_width="@dimen/default_height"
                 android:layout_height="@dimen/default_height"
-                android:layout_toEndOf="@id/btn_choose_calendar"
-                android:layout_toRightOf="@id/btn_choose_calendar"
+                android:layout_toEndOf="@id/btn_calendar"
+                android:layout_toRightOf="@id/btn_calendar"
                 android:scaleType="center"
                 app:srcCompat="@drawable/ic_todo_type_list" />
 
             <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/btn_Priority"
+                android:id="@+id/btn_priority"
                 android:layout_width="@dimen/default_height"
                 android:layout_height="@dimen/default_height"
-                android:layout_toEndOf="@id/btn_typeList"
-                android:layout_toRightOf="@id/btn_typeList"
+                android:layout_toEndOf="@id/btn_category"
+                android:layout_toRightOf="@id/btn_category"
                 android:scaleType="center"
                 app:srcCompat="@drawable/ic_priority" />
 
@@ -103,20 +106,29 @@
                 android:scaleType="center"
                 app:srcCompat="@drawable/ic_send" />
 
-
         </RelativeLayout>
+
+        <io.doist.datetimepicker.date.DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/post_bottom"
+            android:visibility="gone"
+            app:calendarTextColor="@color/textColorPrimary" />
+
+        <include layout="@layout/post_priority_bottom"/>
+        <include layout="@layout/post_category_bottom"/>
 
 
     </LinearLayout>
 
 
     <ProgressBar
+        android:layout_centerInParent="true"
         android:id="@+id/pb_loading"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:visibility="gone" />
 
 
-</FrameLayout>
+</RelativeLayout>

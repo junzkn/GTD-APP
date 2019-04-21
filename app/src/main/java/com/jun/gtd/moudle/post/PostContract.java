@@ -11,8 +11,8 @@ public class PostContract  {
 
         void showChooseCalender();
         void hideChooseCalender();
-        void showChooseTodoCategory();
-        void hideChooseTodoCategory();
+        void showChooseCategory();
+        void hideChooseCategory();
         void showChoosePriority();
         void hideChoosePriority();
 

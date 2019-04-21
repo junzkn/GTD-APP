@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/priorityPicker"
+    android:visibility="gone"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/post_bottom">
+
+    <LinearLayout
+        android:id="@+id/btn_priority_height"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:tint="@color/red_500"
+            app:srcCompat="@drawable/ic_priority" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:textSize="16sp"
+            android:textColor="@color/red_500"
+            android:text="@string/height_priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_priority_middle"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:tint="@color/yellow_500"
+            app:srcCompat="@drawable/ic_priority" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:textSize="16sp"
+            android:textColor="@color/yellow_500"
+            android:text="@string/middle_priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/btn_priority_low"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:tint="@color/blue_500"
+            app:srcCompat="@drawable/ic_priority" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:textSize="16sp"
+            android:textColor="@color/blue_500"
+            android:text="@string/low_priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/btn_priority_default"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:tint="@color/grey_1000"
+            app:srcCompat="@drawable/ic_priority" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:textSize="16sp"
+            android:textColor="@color/grey_1000"
+            android:text="@string/default_priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

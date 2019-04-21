@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main1);
         textView = findViewById(R.id.textView) ;
     }
 
@@ -138,17 +138,17 @@ public class MainActivity extends AppCompatActivity {
 
                 break ;
             case R.id.updateTodoStatus :
-                Net.getInstance().postUpdateTodoStatus(15, 3, new Callback<ResponseDataBean>() {
-                    @Override
-                    public void onResponse(Call<ResponseDataBean> call, Response<ResponseDataBean> response) {
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseDataBean> call, Throwable t) {
-
-                    }
-                });
+//                Net.getInstance().postUpdateTodoStatus(15, 3, new Callback<ResponseDataBean>() {
+//                    @Override
+//                    public void onResponse(Call<ResponseDataBean> call, Response<ResponseDataBean> response) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<ResponseDataBean> call, Throwable t) {
+//
+//                    }
+//                });
                 break ;
 
         }

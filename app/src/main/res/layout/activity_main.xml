@@ -1,79 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_root_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:background="@drawable/confectionary">
 
-    <android.support.v7.widget.AppCompatButton
-        android:text="login"
-        android:id="@+id/login"
-        android:onClick="click"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_refresh"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="18dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onCLick"
+        app:backgroundTint="@android:color/white"
+        app:fabSize="normal"
+        app:rippleColor="@color/grey_40"
+        app:srcCompat="@drawable/ic_add"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:text="logout"
-        android:id="@+id/logout"
-        android:onClick="click"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:text="register"
-        android:id="@+id/register"
-        android:onClick="click"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:text="islogin"
-        android:id="@+id/islogin"
-        android:onClick="click"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:text="addTodo"
-        android:id="@+id/addTodo"
-        android:onClick="click"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:text="getTodo"
-        android:id="@+id/getTodo"
-        android:onClick="click"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:text="deleteTodo"
-        android:id="@+id/deleteTodo"
-        android:onClick="click"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:text="updateTodo"
-        android:id="@+id/updateTodo"
-        android:onClick="click"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:text="updateTodoStatus"
-        android:id="@+id/updateTodoStatus"
-        android:onClick="click"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
