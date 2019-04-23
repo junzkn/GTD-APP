@@ -47,7 +47,7 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
     private int mPriority;
     private String mContent;
 
-    private TodoBean mTodobean ;
+    private TodoBean mTodoBean;
 
     public static final int POST_ACTIVITY_REQUEST_CODE = 2001;
     public static final int POST_ACTIVITY_RESULT_CODE = 2002;
@@ -95,13 +95,14 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
 
     private void initData() {
         Intent intent = getIntent();
-        mTodobean = (TodoBean) intent.getExtras().get("todoBean");
-        if (mTodobean != null) {
-            mDate = mTodobean.getCompleteDateStr();
-            mCategory = mTodobean.getType();
-            mPriority = mTodobean.getPriority();
-            mEtTitle.setText(mTodobean.getTitle());
-            mEtContent.setText(mTodobean.getContent());
+        mTodoBean = (TodoBean) intent.getExtras().get("todoBean");
+        if (mTodoBean != null) {
+            mDate = mTodoBean.getCompleteDateStr();
+            mCategory = mTodoBean.getType();
+            mPriority = mTodoBean.getPriority();
+            mEtTitle.setText(mTodoBean.getTitle());
+            mEtContent.setText(mTodoBean.getContent());
+            mBtnOk.setColorFilter(green);
             mBtnCategory.setColorFilter(grey);
             if (mDate != null && TextUtils.isEmpty(mDate)) {
                 mBtnCalendar.setColorFilter(green);
@@ -390,9 +391,9 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
         todoBean.setStatus(0);
         todoBean.setCompleteDateStr(mDate);
         todoBean.setPriority(mPriority);
-        if(mTodobean!=null){
-            todoBean.setId(mTodobean.getId());
-            todoBean.setStatus(mTodobean.getStatus());
+        if(mTodoBean !=null){
+            todoBean.setId(mTodoBean.getId());
+            todoBean.setStatus(mTodoBean.getStatus());
             mPresenter.requestUpdate(todoBean);
         }else {
             mPresenter.requestAddTodo(todoBean);

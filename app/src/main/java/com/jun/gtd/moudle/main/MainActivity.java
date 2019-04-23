@@ -23,9 +23,13 @@ import com.jun.gtd.bean.TodoBean;
 import com.jun.gtd.moudle.login.LoginActivity;
 import com.jun.gtd.moudle.post.PostActivity;
 import com.jun.gtd.utils.BubbleUtils;
+import com.jun.gtd.utils.ScreenUtils;
+import com.jun.gtd.utils.ToastUtils;
+import com.jun.gtd.utils.ToolbarUtils;
 import com.jun.gtd.utils.ViewEmptyUtils;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View,SwipeRefreshLayout.OnRefreshListener {
@@ -45,8 +49,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     private ClickListener mClickListener ;
 
 
-    private int mSymbol ;
-    private int mType ;
+    private int mSymbol = 1003 ;
+    private int mType = 0 ;
 
     @Override
     protected int getLayoutId() {
@@ -65,8 +69,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mRefresh = findViewById(R.id.srl_refresh);
         mFabAdd = findViewById(R.id.fab_add);
 
-        mTodoAdapter = new TodoAdapter(mPresenter);
+        mTodoAdapter = new TodoAdapter(mContext,mPresenter);
         mTodoListView.setAdapter(mTodoAdapter);
+        ToolbarUtils.initPaddingTopDiffBar(mTodoListView);
         ViewEmptyUtils.setEmpty(mTodoListView);
 
         mRefresh.setColorSchemeResources(R.color.colorAccent, R.color.green_500, R.color.purple_500, R.color.grey_500);
@@ -92,6 +97,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                                 .addContentView(contentView)
                                 .setRelativeOffset(-16)
                                 .setBubbleLayout(BubbleUtils.get(mContext))
+                                .setLayout(ScreenUtils.getScreenWidth(mContext)*2/3,400,0)
                                 .setPosition(BubbleDialog.Position.TOP, BubbleDialog.Position.BOTTOM);
                         mContentBubbleDialogText.setText(content);
                         mContentBubbleDialogText.setOnClickListener(new View.OnClickListener(){
@@ -106,9 +112,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 }
             }
         });
-        mTodoAdapter.setOnItemChildLongClickListener(new BaseQuickAdapter.OnItemChildLongClickListener() {
+        mTodoAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
             @Override
-            public boolean onItemChildLongClick(BaseQuickAdapter adapter, View view, int position) {
+            public boolean onItemLongClick(BaseQuickAdapter adapter, View view, final int position) {
                 MultiItemEntity entity = mTodoAdapter.getData().get(position);
                 final TodoBean todoBean = (TodoBean) entity ;
                 if (entity.getItemType() == TodoAdapter.TYPE_TODO) {
@@ -123,7 +129,15 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                         @Override
                         public void onClick(View view) {
                             mTipBubbleDialog.dismiss();
+                            mTodoAdapter.remove(position);
                             mPresenter.requestDeleteTodo(todoBean.getId());
+                        }
+                    });
+                    contentView.findViewById(R.id.btn_update).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mTipBubbleDialog.dismiss();
+                            PostActivity.launchActivity(mActivity,todoBean);
                         }
                     });
                     mTipBubbleDialog.show();
@@ -139,7 +153,48 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void displayTodoList(List<TodoBean> todos) {
+        mRefresh.setRefreshing(false);
+        List<MultiItemEntity> src = sort(todos,0);
+        mTodoAdapter.setNewData(src);
+        mTodoAdapter.expandAll();
+        mTodoAdapter.notifyDataSetChanged();
+    }
 
+
+    private List<MultiItemEntity> sort(List<TodoBean> todos , int flag){
+        List<MultiItemEntity> src = new ArrayList<>();
+        List<MultiItemEntity> doing = new ArrayList<>();
+        List<MultiItemEntity> done = new ArrayList<>();
+        for(TodoBean todo : todos){
+            if(todo.getStatus()==0){
+                doing.add(todo);
+            }else {
+                done.add(todo);
+            }
+        }
+        src.add(new TodoBean(){
+            @Override
+            public int getItemType() {
+                return TodoAdapter.TYPE_TODO_TYPE;
+            }
+            @Override
+            public String getTitle() {
+                return "doing";
+            }
+        }) ;
+        src.addAll(doing);
+        src.add(new TodoBean(){
+            @Override
+            public int getItemType() {
+                return TodoAdapter.TYPE_TODO_TYPE;
+            }
+            @Override
+            public String getTitle() {
+                return "done";
+            }
+        });
+        src.addAll(done) ;
+        return src ;
     }
 
     @Override

@@ -3,17 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:layout_height="60dp">
 
-    <CheckBox
-        android:id="@+id/cb_check"
+    <FrameLayout
+        android:id="@+id/btn_check"
         android:layout_gravity="center"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        />
-
+        android:layout_width="40dp"
+        android:layout_height="40dp">
+        <android.support.v7.widget.AppCompatImageView
+            app:srcCompat="@drawable/ic_unselect"
+            android:id="@+id/img_check"
+            android:layout_gravity="center"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            />
+    </FrameLayout>
 
     <TextView
+        android:textSize="16sp"
         android:text="测试测试测试"
         android:layout_gravity="center"
         android:id="@+id/tv_text"
@@ -37,8 +46,8 @@
             android:id="@+id/tv_date"
             android:visibility="visible"
             android:layout_gravity="center_horizontal"
-            android:textSize="10sp"
-            android:text="5月20号"
+            android:textSize="13sp"
+            android:text="2019-5-20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <android.support.v7.widget.AppCompatImageView
@@ -46,8 +55,8 @@
             android:visibility="visible"
             android:layout_gravity="end"
             app:srcCompat="@drawable/ic_content"
-            android:layout_width="10dp"
-            android:layout_height="10dp" />
+            android:layout_width="15dp"
+            android:layout_height="15dp" />
 
 
     </LinearLayout>

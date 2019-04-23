@@ -11,7 +11,7 @@ public class BubbleUtils {
 
     public static BubbleLayout get(Context activity) {
         BubbleLayout bl = new BubbleLayout(activity);
-        bl.setShadowColor(ContextCompat.getColor(activity, R.color.colorAccent));
+//        bl.setShadowColor(ContextCompat.getColor(activity, R.color.colorAccent));
         return bl;
     }
 
