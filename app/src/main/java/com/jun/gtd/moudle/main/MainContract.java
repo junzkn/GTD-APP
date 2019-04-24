@@ -37,11 +37,8 @@ public class MainContract {
 
     interface View extends BaseContract.View{
         void displayTodoList(List<TodoBean> todos) ;
-        void showChooseTodoCategory();
-        void hideChooseTodoCategory();
         void guidLogin();
-        void showDeleteTip(int position, TodoBean todoBean);
-        void showLongClickDialog(android.view.View clickView, final int position, final TodoBean todoBean);
+        void refresh() ;
     }
 
 

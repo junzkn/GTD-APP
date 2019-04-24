@@ -32,7 +32,7 @@ import com.jun.gtd.utils.ViewEmptyUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View,SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
     private SwipeRefreshLayout mRefresh;
     private RecyclerView mTodoListView;
     private TodoAdapter mTodoAdapter;
@@ -69,18 +69,23 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mRefresh = findViewById(R.id.srl_refresh);
         mFabAdd = findViewById(R.id.fab_add);
 
-        mTodoAdapter = new TodoAdapter(mContext,mPresenter);
+        mTodoAdapter = new TodoAdapter(this,mPresenter);
         mTodoListView.setAdapter(mTodoAdapter);
         ToolbarUtils.initPaddingTopDiffBar(mTodoListView);
         ViewEmptyUtils.setEmpty(mTodoListView);
 
-        mRefresh.setColorSchemeResources(R.color.colorAccent, R.color.green_500, R.color.purple_500, R.color.grey_500);
+        mRefresh.setColorSchemeResources(R.color.colorAccent);
 
     }
 
     @Override
     protected void prepare() {
-        mRefresh.setOnRefreshListener(this);
+        mRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
         mFabAdd.setOnClickListener(mClickListener);
         mTodoAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
@@ -148,63 +153,60 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         });
 
         mRefresh.setRefreshing(true);
-        onRefresh();
+        refresh();
     }
 
     @Override
     public void displayTodoList(List<TodoBean> todos) {
         mRefresh.setRefreshing(false);
-        List<MultiItemEntity> src = sort(todos,0);
+        List<TodoBean> src = sort(todos,0);
         mTodoAdapter.setNewData(src);
         mTodoAdapter.expandAll();
         mTodoAdapter.notifyDataSetChanged();
     }
 
 
-    private List<MultiItemEntity> sort(List<TodoBean> todos , int flag){
-        List<MultiItemEntity> src = new ArrayList<>();
-        List<MultiItemEntity> doing = new ArrayList<>();
-        List<MultiItemEntity> done = new ArrayList<>();
-        for(TodoBean todo : todos){
-            if(todo.getStatus()==0){
-                doing.add(todo);
-            }else {
-                done.add(todo);
-            }
+    private List<TodoBean> sort(List<TodoBean> todos , int flag){
+        switch(flag){
+            case 0 :
+                List<TodoBean> src = new ArrayList<>();
+                List<TodoBean> doing = new ArrayList<>();
+                List<TodoBean> done = new ArrayList<>();
+                for(TodoBean todo : todos){
+                    if(todo.getStatus()==0){
+                        doing.add(todo);
+                    }else {
+                        done.add(todo);
+                    }
+                }
+                src.add(new TodoBean(){
+                    @Override
+                    public int getItemType() {
+                        return TodoAdapter.TYPE_TODO_TYPE;
+                    }
+                    @Override
+                    public String getTitle() {
+                        return getString(R.string.doing);
+                    }
+                }) ;
+                src.addAll(doing);
+                src.add(new TodoBean(){
+                    @Override
+                    public int getItemType() {
+                        return TodoAdapter.TYPE_TODO_TYPE;
+                    }
+                    @Override
+                    public String getTitle() {
+                        return getString(R.string.done);
+                    }
+                });
+                src.addAll(done) ;
+                return src ;
+            case 1 :
+
+            default :
+                return null ;
         }
-        src.add(new TodoBean(){
-            @Override
-            public int getItemType() {
-                return TodoAdapter.TYPE_TODO_TYPE;
-            }
-            @Override
-            public String getTitle() {
-                return "doing";
-            }
-        }) ;
-        src.addAll(doing);
-        src.add(new TodoBean(){
-            @Override
-            public int getItemType() {
-                return TodoAdapter.TYPE_TODO_TYPE;
-            }
-            @Override
-            public String getTitle() {
-                return "done";
-            }
-        });
-        src.addAll(done) ;
-        return src ;
-    }
-
-    @Override
-    public void showChooseTodoCategory() {
-
-    }
-
-    @Override
-    public void hideChooseTodoCategory() {
-
     }
 
     @Override
@@ -213,17 +215,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     @Override
-    public void showDeleteTip(int position, TodoBean todoBean) {
-
-    }
-
-    @Override
-    public void showLongClickDialog(View clickView, int position, TodoBean todoBean) {
-
-    }
-
-    @Override
-    public void onRefresh() {
+    public void refresh() {
         mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
     }
 
@@ -249,10 +241,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == LoginActivity.LOGIN_ACTIVITY_RESULT_CODE){
             mRefresh.setRefreshing(true);
-            onRefresh();
+            refresh();
         }else if(resultCode == PostActivity.POST_ACTIVITY_RESULT_CODE){
             mRefresh.setRefreshing(true);
-            onRefresh();
+            refresh();
         }
     }
 }

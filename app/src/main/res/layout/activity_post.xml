@@ -85,7 +85,7 @@
                 android:layout_toEndOf="@id/btn_calendar"
                 android:layout_toRightOf="@id/btn_calendar"
                 android:scaleType="center"
-                app:srcCompat="@drawable/ic_todo_type_list" />
+                app:srcCompat="@drawable/ic_category" />
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/btn_priority"

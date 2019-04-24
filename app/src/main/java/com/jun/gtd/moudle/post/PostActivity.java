@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -64,6 +65,8 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
     int black = ContextCompat.getColor(App.getInstance(), R.color.grey_1000);
     private @ColorInt
     int yellow = ContextCompat.getColor(App.getInstance(), R.color.yellow_500);
+    private @ColorInt
+    int theme = ContextCompat.getColor(App.getInstance(), R.color.colorAccent);
 
 
     public static void launchActivity(Activity context, TodoBean todoBean) {
@@ -198,7 +201,7 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
         mDatePicker.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                mBtnCalendar.setColorFilter(green);
+                mBtnCalendar.setColorFilter(theme);
                 mDate = String.format("%s-%s-%s", year, monthOfYear + 1, dayOfMonth);
                 hideChooseCalender();
             }
@@ -218,7 +221,7 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
                 if (InputUtils.isEmpty(mEtTitle)) {
                     mBtnOk.setColorFilter(grey);
                 } else {
-                    mBtnOk.setColorFilter(green);
+                    mBtnOk.setColorFilter(theme);
                 }
             }
         });
@@ -315,6 +318,23 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
     }
 
     @Override
+    public void onBackPressed() {
+        SoftKeyUtils.hide(mActivity);
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event)
+    {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP)
+        {
+            finish();
+        }
+        return super.dispatchKeyEvent(event);
+    }
+
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_back:
@@ -332,22 +352,22 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
                 break;
             case R.id.btn_category_1:
                 hideChooseCategory();
-                mBtnCategory.setColorFilter(green);
+                mBtnCategory.setColorFilter(theme);
                 mCategory = 1;
                 break;
             case R.id.btn_category_2:
                 hideChooseCategory();
-                mBtnCategory.setColorFilter(green);
+                mBtnCategory.setColorFilter(theme);
                 mCategory = 2;
                 break;
             case R.id.btn_category_3:
                 hideChooseCategory();
-                mBtnCategory.setColorFilter(green);
+                mBtnCategory.setColorFilter(theme);
                 mCategory = 3;
                 break;
             case R.id.btn_category_4:
                 hideChooseCategory();
-                mBtnCategory.setColorFilter(green);
+                mBtnCategory.setColorFilter(theme);
                 mCategory = 4;
                 break;
             case R.id.btn_priority_height:

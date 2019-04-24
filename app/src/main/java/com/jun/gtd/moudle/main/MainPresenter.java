@@ -55,6 +55,7 @@ public class MainPresenter extends BasePresenter<MainContract.View,MainContract.
             @Override
             public void onSuccess(ResponseDataBean<TodoBean> date) {
                 super.onSuccess(date);
+                mView.refresh();
             }
         });
     }

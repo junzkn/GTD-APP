@@ -10,91 +10,96 @@
     android:layout_height="@dimen/post_bottom">
 
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:id="@+id/btn_category_1"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_gravity="center"
         android:padding="10dp"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
+        android:background="@drawable/category_bg"
         android:layout_height="wrap_content">
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="center"
-            android:tint="@color/grey_1000"
-            app:srcCompat="@drawable/ic_todo_type_list" />
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_category" />
         <TextView
-            android:layout_marginLeft="20dp"
             android:textSize="16sp"
-            android:textColor="@color/grey_1000"
-            android:text="@string/height_priority"
+            android:textColor="@color/white"
+            android:text="全部"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="5dp"
+
         android:id="@+id/btn_category_2"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_gravity="center"
         android:padding="10dp"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
+        android:background="@drawable/category_bg"
         android:layout_height="wrap_content">
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="center"
-            android:tint="@color/grey_1000"
-            app:srcCompat="@drawable/ic_todo_type_list" />
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_category" />
         <TextView
-            android:layout_marginLeft="20dp"
             android:textSize="16sp"
-            android:textColor="@color/grey_1000"
-            android:text="@string/middle_priority"
+            android:textColor="@color/white"
+            android:text="生活"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:id="@+id/btn_category_3"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_gravity="center"
         android:padding="10dp"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
+        android:background="@drawable/category_bg"
         android:layout_height="wrap_content">
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="center"
-            android:tint="@color/grey_1000"
-            app:srcCompat="@drawable/ic_todo_type_list" />
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_category" />
         <TextView
-            android:layout_marginLeft="20dp"
             android:textSize="16sp"
-            android:textColor="@color/grey_1000"
-            android:text="@string/low_priority"
+            android:textColor="@color/white"
+            android:text="工作"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:id="@+id/btn_category_4"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_gravity="center"
         android:padding="10dp"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
+        android:background="@drawable/category_bg"
         android:layout_height="wrap_content">
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="center"
-            android:tint="@color/grey_1000"
-            app:srcCompat="@drawable/ic_todo_type_list" />
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_category" />
         <TextView
-            android:layout_marginLeft="20dp"
             android:textSize="16sp"
-            android:textColor="@color/grey_1000"
-            android:text="@string/default_priority"
+            android:textColor="@color/white"
+            android:text="娱乐"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
