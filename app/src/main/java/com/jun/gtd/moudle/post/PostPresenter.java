@@ -5,7 +5,7 @@ import com.jun.gtd.base.App;
 import com.jun.gtd.base.BasePresenter;
 import com.jun.gtd.bean.ResponseDataBean;
 import com.jun.gtd.bean.TodoBean;
-import com.jun.gtd.remote.NetCallBackSWL;
+import com.jun.gtd.remote.NetCallBackImpl;
 import com.jun.gtd.utils.ToastUtils;
 
 public class PostPresenter extends BasePresenter<PostContract.View,PostContract.Model> implements PostContract.Presenter {
@@ -17,7 +17,7 @@ public class PostPresenter extends BasePresenter<PostContract.View,PostContract.
     @Override
     public void requestAddTodo(TodoBean todoBean) {
         mView.displayAddTodoIng();
-        mModel.executeAddTodo(todoBean, this, new NetCallBackSWL<ResponseDataBean<TodoBean>>() {
+        mModel.executeAddTodo(todoBean, this, new NetCallBackImpl<ResponseDataBean<TodoBean>>() {
             @Override
             public void onFinished() {
                 super.onFinished();
@@ -34,7 +34,7 @@ public class PostPresenter extends BasePresenter<PostContract.View,PostContract.
     @Override
     public void requestUpdate(TodoBean todoBean) {
         mView.displayAddTodoIng();
-        mModel.executeUpdateTodo(todoBean, this, new NetCallBackSWL<ResponseDataBean<TodoBean>>() {
+        mModel.executeUpdateTodo(todoBean, this, new NetCallBackImpl<ResponseDataBean<TodoBean>>() {
             @Override
             public void onFinished() {
                 super.onFinished();

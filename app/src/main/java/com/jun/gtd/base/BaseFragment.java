@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jun.gtd.utils.ToastUtils;
+
 public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     protected T mPresenter ;
     protected View rootView;
@@ -40,6 +42,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        ToastUtils.cancel();
         mPresenter.detachView();
     }
 

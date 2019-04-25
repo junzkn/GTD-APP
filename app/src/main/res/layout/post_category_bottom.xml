@@ -28,7 +28,7 @@
         <TextView
             android:textSize="16sp"
             android:textColor="@color/white"
-            android:text="全部"
+            android:text="@string/category1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -53,7 +53,7 @@
         <TextView
             android:textSize="16sp"
             android:textColor="@color/white"
-            android:text="生活"
+            android:text="@string/category2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -76,7 +76,7 @@
         <TextView
             android:textSize="16sp"
             android:textColor="@color/white"
-            android:text="工作"
+            android:text="@string/category3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -99,7 +99,7 @@
         <TextView
             android:textSize="16sp"
             android:textColor="@color/white"
-            android:text="娱乐"
+            android:text="@string/category4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

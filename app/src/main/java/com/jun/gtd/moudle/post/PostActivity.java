@@ -105,29 +105,29 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
             mPriority = mTodoBean.getPriority();
             mEtTitle.setText(mTodoBean.getTitle());
             mEtContent.setText(mTodoBean.getContent());
-            mBtnOk.setColorFilter(green);
-            mBtnCategory.setColorFilter(grey);
-            if (mDate != null && TextUtils.isEmpty(mDate)) {
-                mBtnCalendar.setColorFilter(green);
+            mBtnOk.setColorFilter(theme);
+            mBtnCategory.setColorFilter(mCategory==0?grey:theme);
+            if (mDate != null && !TextUtils.isEmpty(mDate)) {
+                mBtnCalendar.setColorFilter(theme);
             }
             switch (mPriority) {
-                case MainContract.PRIORITY_NOTURGENT_NOTIMPORTANT:
+                case TodoBean.PRIORITY_NOTURGENT_NOTIMPORTANT:
                     mBtnPriority.setColorFilter(black);
                     break;
-                case MainContract.PRIORITY_URGENT_IMPORTANT:
+                case TodoBean.PRIORITY_URGENT_IMPORTANT:
                     mBtnPriority.setColorFilter(red);
                     break;
-                case MainContract.PRIORITY_IMPORTANT_NOTURGENT:
+                case TodoBean.PRIORITY_IMPORTANT_NOTURGENT:
                     mBtnPriority.setColorFilter(yellow);
                     break;
-                case MainContract.PRIORITY_URGENT_NOTIMPORTANT:
+                case TodoBean.PRIORITY_URGENT_NOTIMPORTANT:
                     mBtnPriority.setColorFilter(blue);
                     break;
             }
         } else {
             mDate = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(System.currentTimeMillis());
-            mCategory = 1;
-            mPriority = MainContract.PRIORITY_NOTURGENT_NOTIMPORTANT;
+            mCategory = 0;
+            mPriority = TodoBean.PRIORITY_NOTURGENT_NOTIMPORTANT;
             mContent = "";
             mBtnCalendar.setColorFilter(grey);
             mBtnCategory.setColorFilter(grey);
@@ -372,22 +372,22 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
                 break;
             case R.id.btn_priority_height:
                 hideChoosePriority();
-                mPriority = MainContract.PRIORITY_URGENT_IMPORTANT;
+                mPriority = TodoBean.PRIORITY_URGENT_IMPORTANT;
                 mBtnPriority.setColorFilter(red);
                 break;
             case R.id.btn_priority_middle:
                 hideChoosePriority();
-                mPriority = MainContract.PRIORITY_IMPORTANT_NOTURGENT;
+                mPriority = TodoBean.PRIORITY_IMPORTANT_NOTURGENT;
                 mBtnPriority.setColorFilter(yellow);
                 break;
             case R.id.btn_priority_low:
                 hideChoosePriority();
-                mPriority = MainContract.PRIORITY_URGENT_NOTIMPORTANT;
+                mPriority = TodoBean.PRIORITY_URGENT_NOTIMPORTANT;
                 mBtnPriority.setColorFilter(blue);
                 break;
             case R.id.btn_priority_default:
                 hideChoosePriority();
-                mPriority = MainContract.PRIORITY_NOTURGENT_NOTIMPORTANT;
+                mPriority = TodoBean.PRIORITY_NOTURGENT_NOTIMPORTANT;
                 mBtnPriority.setColorFilter(black);
                 break;
             case R.id.btn_ok:

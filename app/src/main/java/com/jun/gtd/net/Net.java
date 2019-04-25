@@ -103,8 +103,7 @@ public class Net {
                              Callback<ResponseDataBean<UserBean>> callback) {
         api.postRegister(username, password,repassword).enqueue(callback);
     }
-
-
+    
 
     public void postAddTodo ( TodoBean todo ,Callback<ResponseDataBean<TodoBean>> callback){
         api.postAddTodo(todo).enqueue(callback);

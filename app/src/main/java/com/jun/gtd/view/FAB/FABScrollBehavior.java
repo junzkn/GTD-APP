@@ -13,11 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 
-/**
- * author: xujiaji
- * created on: 2018/8/8 0:13
- * description:
- */
 public class FABScrollBehavior extends FloatingActionButton.Behavior {
     private RecyclerView recyclerView;
 

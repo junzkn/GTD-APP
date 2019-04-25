@@ -13,6 +13,11 @@ public class TodoBean implements MultiItemEntity, Serializable {
     public static final int GET_BY_STATUS = 1002;
     public static final int GET_ALL = 1003 ;
 
+    public static final int PRIORITY_URGENT_IMPORTANT = 1;
+    public static final int PRIORITY_IMPORTANT_NOTURGENT = 2;
+    public static final int PRIORITY_URGENT_NOTIMPORTANT = 3;
+    public static final int PRIORITY_NOTURGENT_NOTIMPORTANT = 0;
+
     private int id ;
     private String title ;
     private String content ;

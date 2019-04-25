@@ -25,5 +25,10 @@ public class MainModel implements MainContract.Model {
         Net.getInstance().postDeleteTodo(id,NetCallBackHandler.getCallBack(presenterLife,callback));
     }
 
+    @Override
+    public void executeLogout(PresenterLifecycle presenterLifecycle, NetCallBack<ResponseDataBean> callBack) {
+        Net.getInstance().postLogout(NetCallBackHandler.getCallBack(presenterLifecycle,callBack));
+    }
+
 
 }

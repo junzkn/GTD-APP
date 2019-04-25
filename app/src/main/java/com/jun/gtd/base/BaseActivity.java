@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import com.jun.gtd.utils.StatusBarUtils;
+import com.jun.gtd.utils.ToastUtils;
 import com.jun.gtd.utils.ToolbarUtils;
 
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
@@ -37,6 +38,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        ToastUtils.cancel();
         mPresenter.detachView();
     }
 }

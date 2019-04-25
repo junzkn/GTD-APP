@@ -12,19 +12,15 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.jun.gtd.R;
 import com.jun.gtd.base.App;
 import com.jun.gtd.bean.TodoBean;
-import com.jun.gtd.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.jun.gtd.moudle.main.MainContract.PRIORITY_IMPORTANT_NOTURGENT;
-import static com.jun.gtd.moudle.main.MainContract.PRIORITY_NOTURGENT_NOTIMPORTANT;
-import static com.jun.gtd.moudle.main.MainContract.PRIORITY_URGENT_IMPORTANT;
-import static com.jun.gtd.moudle.main.MainContract.PRIORITY_URGENT_NOTIMPORTANT;
+
+
 
 public class TodoAdapter extends BaseMultiItemQuickAdapter<TodoBean, BaseViewHolder> {
 
@@ -90,19 +86,19 @@ public class TodoAdapter extends BaseMultiItemQuickAdapter<TodoBean, BaseViewHol
                 }
 
                 switch(item.getPriority() ){
-                    case PRIORITY_URGENT_IMPORTANT:
+                    case TodoBean.PRIORITY_URGENT_IMPORTANT:
                         title.setTextColor(red);
                         checkBoxImage.setColorFilter(red);
                         break ;
-                    case PRIORITY_IMPORTANT_NOTURGENT:
+                    case TodoBean.PRIORITY_IMPORTANT_NOTURGENT:
                         title.setTextColor(yellow);
                         checkBoxImage.setColorFilter(yellow);
                         break;
-                    case PRIORITY_URGENT_NOTIMPORTANT:
+                    case TodoBean.PRIORITY_URGENT_NOTIMPORTANT:
                         checkBoxImage.setColorFilter(blue);
                         title.setTextColor(blue);
                         break ;
-                    case PRIORITY_NOTURGENT_NOTIMPORTANT:
+                    case TodoBean.PRIORITY_NOTURGENT_NOTIMPORTANT:
                         title.setTextColor(black);
                         checkBoxImage.setColorFilter(black);
                         break;

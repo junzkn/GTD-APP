@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import com.jun.gtd.R;
@@ -19,6 +20,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     private EditText mEtAccount,  mEtPassword;
     private View mLayoutContainer;
     private ProgressBar mPbLoading;
+    private FrameLayout mRootView ;
 
     public static final int LOGIN_ACTIVITY_REQUEST_CODE = 1001;
     public static final int LOGIN_ACTIVITY_RESULT_CODE = 1002;
@@ -36,6 +38,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     protected void init() {
+        mRootView = findViewById(R.id.root_view) ;
         mBtnSwitch = findViewById(R.id.btn_switch);
         mBtnConfirm = findViewById(R.id.btn_confirm);
         mPbLoading = findViewById(R.id.pb_loading);
@@ -68,6 +71,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 }
             }
         });
+
+        mRootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 
     /**

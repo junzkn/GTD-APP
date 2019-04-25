@@ -12,23 +12,44 @@ public class ToastUtils {
 
     public static void info (String msg){
         if(toast==null) initToast();
-        //TODO
+        //
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setText(msg);
+        toast.show();
+    }
+    public static void info (int msg){
+        if(toast==null) initToast();
+        //
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setText(App.getInstance().getString(msg));
         toast.show();
     }
     public static void success (String msg){
         if(toast==null) initToast();
-        //TODO
+        //
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setText(msg);
         toast.show();
     }
+    public static void success (int msg){
+        if(toast==null) initToast();
+        //
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setText(App.getInstance().getString(msg));
+        toast.show();
+    }
     public static void error (String msg){
         if(toast==null) initToast();
-        //TODO
+        //
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setText(msg);
+        toast.show();
+    }
+    public static void error (int msg){
+        if(toast==null) initToast();
+        //
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setText(App.getInstance().getString(msg));
         toast.show();
     }
 

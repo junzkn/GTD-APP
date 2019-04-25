@@ -25,4 +25,14 @@
     <string name="default_priority">默认</string>
     <string name="please_input_title">请输入标题</string>
     <string name="update">修改</string>
+    <string name="please_login">请先登录</string>
+    <string name="logout_success">退出成功</string>
+    <string name="logout">退出</string>
+    <string name="loginAndRegister">登录/注册</string>
+    <string name="category">分类</string>
+    <string name="category1">学习</string>
+    <string name="category2">工作</string>
+    <string name="category3">娱乐</string>
+    <string name="category4">生活</string>
+    <string name="category_all">所有</string>
 </resources>

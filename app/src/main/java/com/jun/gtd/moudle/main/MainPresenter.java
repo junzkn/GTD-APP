@@ -8,7 +8,7 @@ import com.jun.gtd.base.BasePresenter;
 import com.jun.gtd.bean.ResponseDataBean;
 import com.jun.gtd.bean.TodoBean;
 import com.jun.gtd.net.Net;
-import com.jun.gtd.remote.NetCallBackSWL;
+import com.jun.gtd.remote.NetCallBackImpl;
 import com.jun.gtd.utils.ToastUtils;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class MainPresenter extends BasePresenter<MainContract.View,MainContract.
 
     @Override
     public void requestGetTodo(int symbol, int type, SwipeRefreshLayout refreshLayout) {
-        mModel.executeGetTodo(symbol,type,this ,new NetCallBackSWL<ResponseDataBean<List<TodoBean>>>(refreshLayout){
+        mModel.executeGetTodo(symbol,type,this ,new NetCallBackImpl<ResponseDataBean<List<TodoBean>>>(refreshLayout){
             @Override
             public void onFail(int code, String msg) {
                 super.onFail(code, msg);
@@ -41,7 +41,7 @@ public class MainPresenter extends BasePresenter<MainContract.View,MainContract.
 
     @Override
     public void requestUpdateTodoStatus(int id, int status) {
-        mModel.executeUpdateTodoStatus(id, status, this, new NetCallBackSWL<ResponseDataBean<TodoBean>>() {
+        mModel.executeUpdateTodoStatus(id, status, this, new NetCallBackImpl<ResponseDataBean<TodoBean>>() {
             @Override
             public void onFinished() {
                 super.onFinished();
@@ -62,11 +62,34 @@ public class MainPresenter extends BasePresenter<MainContract.View,MainContract.
 
     @Override
     public void requestDeleteTodo(int id) {
-        mModel.executeDeleteTodo(id, this, new NetCallBackSWL<ResponseDataBean>() {
+        mModel.executeDeleteTodo(id, this, new NetCallBackImpl<ResponseDataBean>() {
             @Override
             public void onSuccess(ResponseDataBean date) {
                 super.onSuccess(date);
                 ToastUtils.info(App.getInstance().getString(R.string.success_delete));
+            }
+        });
+    }
+
+    @Override
+    public void requestLogout() {
+        mModel.executeLogout(this, new NetCallBackImpl<ResponseDataBean>(){
+            @Override
+            public void onFinished() {
+                super.onFinished();
+                App.Login.logout();
+                ToastUtils.info(R.string.logout_success);
+                mView.displayTodoList(null);
+            }
+
+            @Override
+            public void onFail(int code, String msg) {
+                super.onFail(code, msg);
+            }
+
+            @Override
+            public void onSuccess(ResponseDataBean date) {
+                super.onSuccess(date);
             }
         });
     }
