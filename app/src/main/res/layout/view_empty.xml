@@ -2,11 +2,170 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:gravity="center"
-        android:text="没有数据哦"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/shape_tran"
+                android:tint="@color/grey_20" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="70dp"
+                    android:layout_height="10dp"
+                    android:background="@color/grey_20" />
+
+                <View
+                    android:layout_width="250dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grey_20" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grey_20" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/shape_tran"
+                android:tint="@color/grey_10" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="100dp"
+                    android:layout_height="10dp"
+                    android:background="@color/grey_10" />
+
+                <View
+                    android:layout_width="250dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grey_10" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grey_10" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/shape_tran"
+                android:tint="@color/grey_40" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="100dp"
+                    android:layout_height="10dp"
+                    android:background="@color/grey_40" />
+
+                <View
+                    android:layout_width="250dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grey_40" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grey_40" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginRight="5dp"
+                android:src="@drawable/shape_circle"
+                android:tint="@color/grey_10"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+            <ImageView
+                android:layout_marginRight="5dp"
+                android:src="@drawable/shape_circle"
+                android:tint="@color/grey_10"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+            <ImageView
+                android:layout_marginRight="5dp"
+                android:src="@drawable/shape_circle"
+                android:tint="@color/grey_10"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+            <ImageView
+                android:layout_marginRight="5dp"
+                android:src="@drawable/shape_circle"
+                android:tint="@color/grey_10"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

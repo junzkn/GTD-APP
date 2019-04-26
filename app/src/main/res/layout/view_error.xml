@@ -15,6 +15,7 @@
     <android.support.v7.widget.AppCompatImageView
         android:layout_marginBottom="100dp"
         android:layout_gravity="center"
+        app:tint="@color/grey_700"
         app:srcCompat="@drawable/ic_network_eror"
         android:layout_width="150dp"
         android:layout_height="150dp" />
