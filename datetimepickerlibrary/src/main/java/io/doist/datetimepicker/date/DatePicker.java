@@ -147,6 +147,10 @@ public class DatePicker extends HapticFeedbackFrameLayout {
         return mDelegate.getYear();
     }
 
+    public long getTimeInMillis(){
+        return mDelegate.getTimeInMillis() ;
+    }
+
     /**
      * @return The selected month.
      */
@@ -331,6 +335,8 @@ public class DatePicker extends HapticFeedbackFrameLayout {
         void updateDate(int year, int month, int dayOfMonth);
 
         int getYear();
+
+        long getTimeInMillis();
 
         int getMonth();
 

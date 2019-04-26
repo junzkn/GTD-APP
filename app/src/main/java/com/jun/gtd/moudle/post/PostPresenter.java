@@ -28,6 +28,11 @@ public class PostPresenter extends BasePresenter<PostContract.View,PostContract.
                 super.onSuccess(date);
                 ToastUtils.info(App.getInstance().getString(R.string.success_add));
             }
+
+            @Override
+            public void onFail(int code, String msg) {
+                super.onFail(code, msg);
+            }
         });
     }
 

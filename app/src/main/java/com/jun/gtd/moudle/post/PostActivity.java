@@ -19,7 +19,6 @@ import com.jun.gtd.R;
 import com.jun.gtd.base.App;
 import com.jun.gtd.base.BaseActivity;
 import com.jun.gtd.bean.TodoBean;
-import com.jun.gtd.moudle.main.MainContract;
 import com.jun.gtd.utils.InputUtils;
 import com.jun.gtd.utils.SoftKeyUtils;
 import com.jun.gtd.utils.ToastUtils;
@@ -43,10 +42,10 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
     private LinearLayout mCategoryPicker;
     private DatePicker mDatePicker;
 
-    private String mDate;
+    private String mDateStr;
+    private long mDate ;
     private int mCategory;
     private int mPriority;
-    private String mContent;
 
     private TodoBean mTodoBean;
 
@@ -55,8 +54,6 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
 
     private @ColorInt
     int grey = ContextCompat.getColor(App.getInstance(), R.color.grey_500);
-    private @ColorInt
-    int green = ContextCompat.getColor(App.getInstance(), R.color.green_500);
     private @ColorInt
     int red = ContextCompat.getColor(App.getInstance(), R.color.red_500);
     private @ColorInt
@@ -90,24 +87,25 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
     protected void init() {
         ToolbarUtils.initPaddingTopDiffBar(findViewById(R.id.ll_top));
         initView();
-        mDatePicker.setMinDate(System.currentTimeMillis());
-        mDatePicker.setMaxDate(System.currentTimeMillis() + 356L * 24L * 60L * 60L * 1000L);
         initData();
         mEtTitle.requestFocus();
     }
 
     private void initData() {
+        mDatePicker.setMinDate(System.currentTimeMillis() - 178L * 24L * 60L * 60L * 1000L);
+        mDatePicker.setMaxDate(System.currentTimeMillis() + 178L * 24L * 60L * 60L * 1000L);
         Intent intent = getIntent();
         mTodoBean = (TodoBean) intent.getExtras().get("todoBean");
         if (mTodoBean != null) {
-            mDate = mTodoBean.getCompleteDateStr();
+            mDateStr = mTodoBean.getCompleteDateStr();
+            mDate = mTodoBean.getCompleteDate();
             mCategory = mTodoBean.getType();
             mPriority = mTodoBean.getPriority();
             mEtTitle.setText(mTodoBean.getTitle());
             mEtContent.setText(mTodoBean.getContent());
             mBtnOk.setColorFilter(theme);
             mBtnCategory.setColorFilter(mCategory==0?grey:theme);
-            if (mDate != null && !TextUtils.isEmpty(mDate)) {
+            if (mDateStr != null && !TextUtils.isEmpty(mDateStr)) {
                 mBtnCalendar.setColorFilter(theme);
             }
             switch (mPriority) {
@@ -125,10 +123,10 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
                     break;
             }
         } else {
-            mDate = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(System.currentTimeMillis());
+            mDate = System.currentTimeMillis();
+            mDateStr = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(System.currentTimeMillis());
             mCategory = 0;
             mPriority = TodoBean.PRIORITY_NOTURGENT_NOTIMPORTANT;
-            mContent = "";
             mBtnCalendar.setColorFilter(grey);
             mBtnCategory.setColorFilter(grey);
             mBtnPriority.setColorFilter(grey);
@@ -202,7 +200,8 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 mBtnCalendar.setColorFilter(theme);
-                mDate = String.format("%s-%s-%s", year, monthOfYear + 1, dayOfMonth);
+                mDateStr = String.format("%s-%s-%s", year, monthOfYear + 1, dayOfMonth);
+                mDate = mDatePicker.getTimeInMillis() ;
                 hideChooseCalender();
             }
         });
@@ -409,7 +408,8 @@ public class PostActivity extends BaseActivity<PostPresenter> implements PostCon
         todoBean.setContent(mEtContent.getText().toString().trim());
         todoBean.setType(mCategory);
         todoBean.setStatus(0);
-        todoBean.setCompleteDateStr(mDate);
+        todoBean.setCompleteDateStr(mDateStr);
+        todoBean.setCompleteDate(mDate);
         todoBean.setPriority(mPriority);
         if(mTodoBean !=null){
             todoBean.setId(mTodoBean.getId());

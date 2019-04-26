@@ -30,6 +30,9 @@ import com.jun.gtd.utils.ViewEmptyUtils;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
@@ -44,6 +47,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     private ImageView mImgUser ;
     private DrawerLayout mDrawerLayout ;
     private LinearLayout mBtnCategoryAll ,mBtnCategory1 ,mBtnCategory2 ,mBtnCategory3 ,mBtnCategory4;
+    private LinearLayout mBtnHideDone , mBtnHideExpired ;
+    private TextView mTvOrder1 , mTvOrder2 , mTvOrder3 ;
 
 
     private ClickListener mClickListener ;
@@ -51,6 +56,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     private int mSymbol = 1003 ;
     private int mType = 0 ;
+    private int mHideDone = 0  ;
+    private int mHideExpired = 0 ;
+    private int mTimeOrder = 0  ;
 
     @Override
     protected int getLayoutId() {
@@ -76,6 +84,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mBtnCategory2 = findViewById(R.id.btn_category_2);
         mBtnCategory3 = findViewById(R.id.btn_category_3);
         mBtnCategory4 = findViewById(R.id.btn_category_4);
+        mBtnHideDone = findViewById(R.id.btn_hide_done);
+        mBtnHideExpired = findViewById(R.id.btn_hide_expired) ;
+        mTvOrder1 = findViewById(R.id.tv_order_default) ;
+        mTvOrder2 = findViewById(R.id.tv_order_dcs) ;
+        mTvOrder3 = findViewById(R.id.tv_order_acs) ;
+
+
+
 
         mTodoAdapter = new TodoAdapter(this,mPresenter);
         mTodoListView.setAdapter(mTodoAdapter);
@@ -102,6 +118,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mBtnCategory3.setOnClickListener(mClickListener);
         mBtnCategory4.setOnClickListener(mClickListener);
         mBtnCategoryAll.setOnClickListener(mClickListener);
+        mBtnHideDone.setOnClickListener(mClickListener);
+        mBtnHideExpired.setOnClickListener(mClickListener);
+        mTvOrder1.setOnClickListener(mClickListener);
+        mTvOrder2.setOnClickListener(mClickListener);
+        mTvOrder3.setOnClickListener(mClickListener);
+
         mTvLogin.setText(App.Login.isLogin()?getString(R.string.logout):getString(R.string.loginAndRegister));
         mTodoAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
@@ -175,7 +197,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     public void displayTodoList(List<TodoBean> todos) {
         mRefresh.setRefreshing(false);
         if(todos!=null){
-            List<TodoBean> src = sort(todos,0);
+            List<TodoBean> src = sortByStatus(todos,mHideDone);
             mTodoAdapter.setNewData(src);
             mTodoAdapter.expandAll();
             mTodoAdapter.notifyDataSetChanged();
@@ -187,21 +209,54 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         }
     }
 
+    private void sortByTime(List<TodoBean> todos, int flag) {
+        if(flag==0) return ;
+        else if(flag == 1){
+            Collections.sort(todos, new Comparator<TodoBean>() {
+                @Override
+                public int compare(TodoBean o1, TodoBean o2) {
+                    return o1.getCompleteDate() == o2.getCompleteDate() ? 0 : o1.getCompleteDate() > o2.getCompleteDate() ? -1 : 1;
+                }
+            });
+        }else if(flag==2){
+            Collections.sort(todos, new Comparator<TodoBean>() {
+                @Override
+                public int compare(TodoBean o1, TodoBean o2) {
+                    return o1.getCompleteDate() == o2.getCompleteDate() ? 0 : o1.getCompleteDate() < o2.getCompleteDate() ? -1 : 1;
+                }
+            });
+        }
+    }
 
-    private List<TodoBean> sort(List<TodoBean> todos , int flag){
+    private List<TodoBean> hideExpired(List<TodoBean> todos , int flag){
+        if(flag==0) return todos;
+        long currentTime = System.currentTimeMillis() - 86400000 ;
+        List<TodoBean> l = new ArrayList<>() ;
+        if( flag==1) {
+            for(TodoBean todo : todos){
+                if(todo.getCompleteDate()>currentTime){
+                    l.add(todo);
+                }
+            }
+        }
+        return l ;
+    }
+
+
+    private List<TodoBean> sortByStatus(List<TodoBean> todos , int flag){
         switch(flag){
             case 0 :
-                List<TodoBean> src = new ArrayList<>();
-                List<TodoBean> doing = new ArrayList<>();
-                List<TodoBean> done = new ArrayList<>();
+                List<TodoBean> src0 = new ArrayList<>();
+                List<TodoBean> doing0 = new ArrayList<>();
+                List<TodoBean> done0 = new ArrayList<>();
                 for(TodoBean todo : todos){
                     if(todo.getStatus()==0){
-                        doing.add(todo);
+                        doing0.add(todo);
                     }else {
-                        done.add(todo);
+                        done0.add(todo);
                     }
                 }
-                src.add(new TodoBean(){
+                src0.add(new TodoBean(){
                     @Override
                     public int getItemType() {
                         return TodoAdapter.TYPE_TODO_TYPE;
@@ -211,8 +266,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                         return getString(R.string.doing);
                     }
                 }) ;
-                src.addAll(doing);
-                src.add(new TodoBean(){
+                doing0 = hideExpired(doing0,mHideExpired);
+                sortByTime(doing0,mTimeOrder);
+                src0.addAll(doing0);
+                src0.add(new TodoBean(){
                     @Override
                     public int getItemType() {
                         return TodoAdapter.TYPE_TODO_TYPE;
@@ -222,12 +279,35 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                         return getString(R.string.done);
                     }
                 });
-                src.addAll(done) ;
-                return src ;
+                done0 = hideExpired(done0,mHideExpired);
+                hideExpired(done0,mHideExpired);
+                sortByTime(done0,mTimeOrder);
+                src0.addAll(done0) ;
+                return src0 ;
             case 1 :
-
+                List<TodoBean> src1 = new ArrayList<>();
+                List<TodoBean> doing1 = new ArrayList<>();
+                for(TodoBean todo : todos){
+                    if(todo.getStatus()==0){
+                        doing1.add(todo);
+                    }
+                }
+                src1.add(new TodoBean(){
+                    @Override
+                    public int getItemType() {
+                        return TodoAdapter.TYPE_TODO_TYPE;
+                    }
+                    @Override
+                    public String getTitle() {
+                        return getString(R.string.doing);
+                    }
+                }) ;
+                doing1 = hideExpired(doing1,mHideExpired);
+                sortByTime(doing1,mTimeOrder);
+                src1.addAll(doing1);
+                return src1 ;
             default :
-                return null ;
+                return todos ;
         }
     }
 
@@ -271,7 +351,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     mBtnCategory4.setBackground(null);
                     mSymbol = 1003 ;
                     mType = 0 ;
-                    mDrawerLayout.closeDrawers();
                     mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
                     break ;
                 case R.id.btn_category_1 :
@@ -282,7 +361,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     mBtnCategory4.setBackground(null);
                     mSymbol = 1001 ;
                     mType = 1 ;
-                    mDrawerLayout.closeDrawers();
                     mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
                     break ;
                 case R.id.btn_category_2 :
@@ -293,7 +371,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     mBtnCategory4.setBackground(null);
                     mSymbol = 1001 ;
                     mType = 2 ;
-                    mDrawerLayout.closeDrawers();
                     mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
                     break ;
                 case R.id.btn_category_3 :
@@ -304,7 +381,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     mBtnCategory4.setBackground(null);
                     mSymbol = 1001 ;
                     mType = 3 ;
-                    mDrawerLayout.closeDrawers();
                     mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
                     break ;
                 case R.id.btn_category_4 :
@@ -315,8 +391,50 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     mBtnCategoryAll.setBackground(null);
                     mSymbol = 1001 ;
                     mType = 4 ;
-                    mDrawerLayout.closeDrawers();
                     mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
+                    break ;
+                case R.id.tv_order_default :
+                    mTimeOrder=0 ;
+                    mTvOrder1.setBackground(getResources().getDrawable(R.drawable.category_item_bg));
+                    mTvOrder2.setBackground(null);
+                    mTvOrder3.setBackground(null);
+                    mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
+                    break ;
+              case R.id.tv_order_dcs :
+                    mTimeOrder=1 ;
+                    mTvOrder2.setBackground(getResources().getDrawable(R.drawable.category_item_bg));
+                    mTvOrder1.setBackground(null);
+                    mTvOrder3.setBackground(null);
+                    mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
+                    break ;
+              case R.id.tv_order_acs :
+                    mTimeOrder=2 ;
+                    mTvOrder3.setBackground(getResources().getDrawable(R.drawable.category_item_bg));
+                    mTvOrder2.setBackground(null);
+                    mTvOrder1.setBackground(null);
+                    mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
+                    break ;
+                case R.id.btn_hide_done:
+                    if(mHideDone==0){
+                        mHideDone=1 ;
+                        mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
+                        mBtnHideDone.setBackground(getResources().getDrawable(R.drawable.category_item_bg));
+                    }else{
+                        mHideDone=0 ;
+                        mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
+                        mBtnHideDone.setBackground(null);
+                    }
+                    break ;
+             case R.id.btn_hide_expired:
+                    if(mHideExpired==0){
+                        mHideExpired=1 ;
+                        mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
+                        mBtnHideExpired.setBackground(getResources().getDrawable(R.drawable.category_item_bg));
+                    }else{
+                        mHideExpired=0 ;
+                        mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
+                        mBtnHideExpired.setBackground(null);
+                    }
                     break ;
             }
         }

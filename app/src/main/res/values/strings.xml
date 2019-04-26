@@ -35,4 +35,6 @@
     <string name="category3">娱乐</string>
     <string name="category4">生活</string>
     <string name="category_all">所有</string>
+    <string name="hide_expired">隐藏已过期任务</string>
+    <string name="hide_done">隐藏已完成任务</string>
 </resources>

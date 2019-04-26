@@ -419,6 +419,11 @@ class DatePickerCalendarDelegate extends DatePicker.AbstractDatePickerDelegate i
     }
 
     @Override
+    public long getTimeInMillis() {
+        return mCurrentDate.getTimeInMillis();
+    }
+
+    @Override
     public int getMonth() {
         return mCurrentDate.get(Calendar.MONTH);
     }
