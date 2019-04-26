@@ -1,10 +1,13 @@
 package com.jun.gtd.moudle.main;
 
 import android.content.Intent;
+import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -53,6 +56,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     private ClickListener mClickListener ;
 
+    @ColorInt
+    int theme = ContextCompat.getColor(App.getInstance(),R.color.colorAccent) ;
+    @ColorInt
+    int grey = ContextCompat.getColor(App.getInstance(),R.color.grey_500) ;
 
     private int mSymbol = 1003 ;
     private int mType = 0 ;
@@ -345,50 +352,100 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     break ;
                 case R.id.btn_category_all :
                     mBtnCategoryAll.setBackground(getResources().getDrawable(R.drawable.category_item_bg));
+                    ((TextView)mBtnCategoryAll.findViewById(R.id.tv1)).setTextColor(theme);
+                    ((AppCompatImageView)mBtnCategoryAll.findViewById(R.id.img1)).setColorFilter(theme);
                     mBtnCategory1.setBackground(null);
+                    ((TextView)mBtnCategory1.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory1.findViewById(R.id.img1)).setColorFilter(grey);
                     mBtnCategory2.setBackground(null);
+                    ((TextView)mBtnCategory2.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory2.findViewById(R.id.img1)).setColorFilter(grey);
                     mBtnCategory3.setBackground(null);
+                    ((TextView)mBtnCategory3.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory3.findViewById(R.id.img1)).setColorFilter(grey);
                     mBtnCategory4.setBackground(null);
+                    ((TextView)mBtnCategory4.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory4.findViewById(R.id.img1)).setColorFilter(grey);
                     mSymbol = 1003 ;
                     mType = 0 ;
                     mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
                     break ;
                 case R.id.btn_category_1 :
                     mBtnCategory1.setBackground(getResources().getDrawable(R.drawable.category_item_bg));
+                    ((TextView)mBtnCategory1.findViewById(R.id.tv1)).setTextColor(theme);
+                    ((AppCompatImageView)mBtnCategory1.findViewById(R.id.img1)).setColorFilter(theme);
                     mBtnCategoryAll.setBackground(null);
+                    ((TextView)mBtnCategoryAll.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategoryAll.findViewById(R.id.img1)).setColorFilter(grey);
                     mBtnCategory2.setBackground(null);
+                    ((TextView)mBtnCategory2.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory2.findViewById(R.id.img1)).setColorFilter(grey);
                     mBtnCategory3.setBackground(null);
+                    ((TextView)mBtnCategory3.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory3.findViewById(R.id.img1)).setColorFilter(grey);
                     mBtnCategory4.setBackground(null);
+                    ((TextView)mBtnCategory4.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory4.findViewById(R.id.img1)).setColorFilter(grey);
                     mSymbol = 1001 ;
                     mType = 1 ;
                     mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
                     break ;
                 case R.id.btn_category_2 :
                     mBtnCategory2.setBackground(getResources().getDrawable(R.drawable.category_item_bg));
-                    mBtnCategory1.setBackground(null);
+                    ((TextView)mBtnCategory2.findViewById(R.id.tv1)).setTextColor(theme);
+                    ((AppCompatImageView)mBtnCategory2.findViewById(R.id.img1)).setColorFilter(theme);
                     mBtnCategoryAll.setBackground(null);
+                    ((TextView)mBtnCategoryAll.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategoryAll.findViewById(R.id.img1)).setColorFilter(grey);
+                    mBtnCategory1.setBackground(null);
+                    ((TextView)mBtnCategory1.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory1.findViewById(R.id.img1)).setColorFilter(grey);
                     mBtnCategory3.setBackground(null);
+                    ((TextView)mBtnCategory3.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory3.findViewById(R.id.img1)).setColorFilter(grey);
                     mBtnCategory4.setBackground(null);
+                    ((TextView)mBtnCategory4.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory4.findViewById(R.id.img1)).setColorFilter(grey);
                     mSymbol = 1001 ;
                     mType = 2 ;
                     mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
                     break ;
                 case R.id.btn_category_3 :
                     mBtnCategory3.setBackground(getResources().getDrawable(R.drawable.category_item_bg));
-                    mBtnCategory1.setBackground(null);
-                    mBtnCategory2.setBackground(null);
+                    ((TextView)mBtnCategory3.findViewById(R.id.tv1)).setTextColor(theme);
+                    ((AppCompatImageView)mBtnCategory3.findViewById(R.id.img1)).setColorFilter(theme);
                     mBtnCategoryAll.setBackground(null);
+                    ((TextView)mBtnCategoryAll.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategoryAll.findViewById(R.id.img1)).setColorFilter(grey);
+                    mBtnCategory2.setBackground(null);
+                    ((TextView)mBtnCategory2.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory2.findViewById(R.id.img1)).setColorFilter(grey);
+                    mBtnCategory1.setBackground(null);
+                    ((TextView)mBtnCategory1.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory1.findViewById(R.id.img1)).setColorFilter(grey);
                     mBtnCategory4.setBackground(null);
+                    ((TextView)mBtnCategory4.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory4.findViewById(R.id.img1)).setColorFilter(grey);
                     mSymbol = 1001 ;
                     mType = 3 ;
                     mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
                     break ;
                 case R.id.btn_category_4 :
                     mBtnCategory4.setBackground(getResources().getDrawable(R.drawable.category_item_bg));
-                    mBtnCategory1.setBackground(null);
-                    mBtnCategory2.setBackground(null);
-                    mBtnCategory3.setBackground(null);
+                    ((TextView)mBtnCategory4.findViewById(R.id.tv1)).setTextColor(theme);
+                    ((AppCompatImageView)mBtnCategory4.findViewById(R.id.img1)).setColorFilter(theme);
                     mBtnCategoryAll.setBackground(null);
+                    ((TextView)mBtnCategoryAll.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategoryAll.findViewById(R.id.img1)).setColorFilter(grey);
+                    mBtnCategory2.setBackground(null);
+                    ((TextView)mBtnCategory2.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory2.findViewById(R.id.img1)).setColorFilter(grey);
+                    mBtnCategory3.setBackground(null);
+                    ((TextView)mBtnCategory3.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory3.findViewById(R.id.img1)).setColorFilter(grey);
+                    mBtnCategory1.setBackground(null);
+                    ((TextView)mBtnCategory1.findViewById(R.id.tv1)).setTextColor(grey);
+                    ((AppCompatImageView)mBtnCategory1.findViewById(R.id.img1)).setColorFilter(grey);
                     mSymbol = 1001 ;
                     mType = 4 ;
                     mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
@@ -396,22 +453,31 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 case R.id.tv_order_default :
                     mTimeOrder=0 ;
                     mTvOrder1.setBackground(getResources().getDrawable(R.drawable.category_item_bg));
+                    mTvOrder1.setTextColor(theme);
                     mTvOrder2.setBackground(null);
+                    mTvOrder2.setTextColor(grey);
                     mTvOrder3.setBackground(null);
+                    mTvOrder3.setTextColor(grey);
                     mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
                     break ;
               case R.id.tv_order_dcs :
                     mTimeOrder=1 ;
                     mTvOrder2.setBackground(getResources().getDrawable(R.drawable.category_item_bg));
+                    mTvOrder2.setTextColor(theme);
                     mTvOrder1.setBackground(null);
+                    mTvOrder1.setTextColor(grey);
                     mTvOrder3.setBackground(null);
+                    mTvOrder3.setTextColor(grey);
                     mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
                     break ;
               case R.id.tv_order_acs :
                     mTimeOrder=2 ;
                     mTvOrder3.setBackground(getResources().getDrawable(R.drawable.category_item_bg));
+                    mTvOrder3.setTextColor(theme);
                     mTvOrder2.setBackground(null);
+                    mTvOrder2.setTextColor(grey);
                     mTvOrder1.setBackground(null);
+                    mTvOrder1.setTextColor(grey);
                     mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
                     break ;
                 case R.id.btn_hide_done:
@@ -419,10 +485,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                         mHideDone=1 ;
                         mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
                         mBtnHideDone.setBackground(getResources().getDrawable(R.drawable.category_item_bg));
+                        ((TextView)mBtnHideDone.findViewById(R.id.tv1)).setTextColor(theme);
+                        ((AppCompatImageView)mBtnHideDone.findViewById(R.id.img1)).setColorFilter(theme);
                     }else{
                         mHideDone=0 ;
                         mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
                         mBtnHideDone.setBackground(null);
+                        ((TextView)mBtnHideDone.findViewById(R.id.tv1)).setTextColor(grey);
+                        ((AppCompatImageView)mBtnHideDone.findViewById(R.id.img1)).setColorFilter(grey);
                     }
                     break ;
              case R.id.btn_hide_expired:
@@ -430,10 +500,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                         mHideExpired=1 ;
                         mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
                         mBtnHideExpired.setBackground(getResources().getDrawable(R.drawable.category_item_bg));
+                        ((TextView)mBtnHideExpired.findViewById(R.id.tv1)).setTextColor(theme);
+                        ((AppCompatImageView)mBtnHideExpired.findViewById(R.id.img1)).setColorFilter(theme);
                     }else{
                         mHideExpired=0 ;
                         mPresenter.requestGetTodo(mSymbol,mType,mRefresh);
                         mBtnHideExpired.setBackground(null);
+                        ((TextView)mBtnHideExpired.findViewById(R.id.tv1)).setTextColor(grey);
+                        ((AppCompatImageView)mBtnHideExpired.findViewById(R.id.img1)).setColorFilter(grey);
                     }
                     break ;
             }
