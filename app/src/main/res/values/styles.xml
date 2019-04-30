@@ -12,9 +12,8 @@
     </style>
 
 
-    <style name="DialogActivity" parent="@style/AppTheme">
+    <style name="LoginActivity" parent="@style/AppTheme">
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowAnimationStyle">@style/DialogActivityAnimation</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -22,12 +21,7 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-    <style name="DialogActivityAnimation" >
-        <item name="android:activityOpenEnterAnimation">@anim/dialog_activity_in</item>
-        <item name="android:activityOpenExitAnimation">@anim/dialog_activity_out</item>
-        <item name="android:activityCloseEnterAnimation">@anim/dialog_activity_in</item>
-        <item name="android:activityCloseExitAnimation">@anim/dialog_activity_out</item>
-    </style>
+
 
 
 </resources>

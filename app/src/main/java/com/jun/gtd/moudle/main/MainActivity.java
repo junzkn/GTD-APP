@@ -1,5 +1,7 @@
 package com.jun.gtd.moudle.main;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
@@ -17,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.animation.BaseAnimation;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.jun.bubble.BubbleDialog;
 import com.jun.gtd.R;
@@ -205,12 +208,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         if(todos!=null){
             List<TodoBean> src = sortByStatus(todos,mHideDone);
             mTodoAdapter.setNewData(src);
-            mTodoAdapter.expandAll();
             mTodoAdapter.notifyDataSetChanged();
         }else{
             ViewEmptyUtils.setEmpty(mTodoListView);
             mTodoAdapter.setNewData(todos);
-            mTodoAdapter.expandAll();
             mTodoAdapter.notifyDataSetChanged();
         }
     }

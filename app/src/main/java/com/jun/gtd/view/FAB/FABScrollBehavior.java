@@ -49,7 +49,8 @@ public class FABScrollBehavior extends FloatingActionButton.Behavior {
             }
             View view = viewGroup.getChildAt(0);
             if (!(view instanceof RecyclerView)) {
-                throw new RuntimeException();
+                return ;
+                //throw new RuntimeException();
             }
             recyclerView = (RecyclerView) view;
         }

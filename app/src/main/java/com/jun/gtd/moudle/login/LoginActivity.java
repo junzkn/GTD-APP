@@ -87,6 +87,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
      */
     public static void launchActivity(Activity context){
         context.startActivityForResult(new Intent(context,LoginActivity.class),LOGIN_ACTIVITY_REQUEST_CODE);
+        context.overridePendingTransition(R.anim.activity_fade_in,0);
+
     }
 
     /**
@@ -129,4 +131,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, R.anim.activity_fade_out);
+    }
 }
