@@ -37,6 +37,9 @@ dependencies {
     //View
     implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.41"
 
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+
+
     implementation project(path: ':bubble')
     implementation project(':DateTimePickerLibrary')
 

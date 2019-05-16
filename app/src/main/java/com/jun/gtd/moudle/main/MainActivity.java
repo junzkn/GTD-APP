@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.animation.BaseAnimation;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
@@ -28,6 +29,7 @@ import com.jun.gtd.base.BaseActivity;
 import com.jun.gtd.bean.TodoBean;
 import com.jun.gtd.moudle.login.LoginActivity;
 import com.jun.gtd.moudle.post.PostActivity;
+import com.jun.gtd.net.Net;
 import com.jun.gtd.utils.BubbleUtils;
 import com.jun.gtd.utils.ScreenUtils;
 import com.jun.gtd.utils.ToastUtils;
@@ -134,6 +136,18 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mTvOrder3.setOnClickListener(mClickListener);
 
         mTvLogin.setText(App.Login.isLogin()?getString(R.string.logout):getString(R.string.loginAndRegister));
+        if(App.Login.isLogin()){
+            Glide.with(mContext)
+                    .load(Net.BASE_URL+"/resources/uu.png")
+                    .placeholder(R.drawable.ic_user)
+                    .into(mImgUser);
+        }
+        else{
+            Glide.with(mContext)
+                    .load(R.drawable.ic_user)
+                    .into(mImgUser);
+        }
+
         mTodoAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -348,6 +362,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     }else{
                         mPresenter.requestLogout();
                         mTvLogin.setText(getString(R.string.loginAndRegister));
+                        Glide.with(mContext)
+                                .load(R.drawable.ic_user)
+                                .into(mImgUser);
                     }
                     break ;
                 case R.id.btn_category_all :
@@ -521,6 +538,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         if(resultCode == LoginActivity.LOGIN_ACTIVITY_RESULT_CODE){
             mRefresh.setRefreshing(true);
             mTvLogin.setText(getString(R.string.logout));
+            Glide.with(mContext)
+                    .load(Net.BASE_URL+"/resources/uu.png")
+                    .placeholder(R.drawable.ic_user)
+                    .into(mImgUser);
             refresh();
         }else if(resultCode == PostActivity.POST_ACTIVITY_RESULT_CODE){
             mRefresh.setRefreshing(true);
